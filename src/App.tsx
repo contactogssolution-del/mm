@@ -1,5 +1,9 @@
 import { Building2, Globe, Shield, Zap, CheckCircle, ArrowRight, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import ContactForm from './components/ContactForm';
+import Testimonials from './components/Testimonials';
+import FAQ from './components/FAQ';
+import TrustBadges from './components/TrustBadges';
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,14 +40,14 @@ function App() {
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className={`transition-colors duration-300 hover:text-blue-600 ${
-                    isScrolled ? 'text-gray-700' : 'text-white'
+                  className={`relative transition-colors duration-300 hover:text-blue-600 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-blue-600 after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full ${
+                    isScrolled ? 'text-gray-700' : 'text-white after:bg-white hover:after:bg-blue-600'
                   }`}
                 >
                   {item}
                 </a>
               ))}
-              <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg hover:scale-105">
+              <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50 hover:scale-105 active:scale-95">
                 Get Started
               </button>
             </div>
@@ -99,13 +103,19 @@ function App() {
             Fast, reliable, and hassle-free LLC formation for entrepreneurs worldwide. Start your American business today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
-            <button className="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2">
+            <a
+              href="#contact"
+              className="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center space-x-2 group"
+            >
               <span>Start Your LLC</span>
-              <ArrowRight className="h-5 w-5" />
-            </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 hover:scale-105">
+              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </a>
+            <a
+              href="#services"
+              className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 hover:scale-105 active:scale-95"
+            >
               Learn More
-            </button>
+            </a>
           </div>
 
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 animate-fade-in-up animation-delay-600">
@@ -160,11 +170,11 @@ function App() {
             ].map((feature, index) => (
               <div
                 key={feature.title}
-                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-fade-in-up"
+                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-fade-in-up group cursor-pointer border-2 border-transparent hover:border-blue-100"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
+                <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">{feature.icon}</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">{feature.title}</h3>
                 <p className="text-gray-600">{feature.description}</p>
               </div>
             ))}
@@ -207,27 +217,31 @@ function App() {
             </div>
 
             <div className="relative">
-              <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-3xl p-12 text-white shadow-2xl transform hover:scale-105 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
+              <div className="relative bg-gradient-to-br from-blue-500 to-blue-700 rounded-3xl p-12 text-white shadow-2xl transform hover:scale-105 transition-all duration-300 group">
                 <div className="text-center">
-                  <div className="text-5xl font-bold mb-2">$499</div>
+                  <div className="text-5xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300">$499</div>
                   <div className="text-blue-200 mb-8">One-time fee</div>
                   <div className="space-y-4 mb-8 text-left">
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-2 hover:translate-x-2 transition-transform duration-300">
                       <CheckCircle className="h-5 w-5" />
                       <span>No hidden fees</span>
                     </div>
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-2 hover:translate-x-2 transition-transform duration-300">
                       <CheckCircle className="h-5 w-5" />
                       <span>Money-back guarantee</span>
                     </div>
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-2 hover:translate-x-2 transition-transform duration-300">
                       <CheckCircle className="h-5 w-5" />
                       <span>Free 1-year registered agent</span>
                     </div>
                   </div>
-                  <button className="w-full bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105">
+                  <a
+                    href="#contact"
+                    className="block w-full bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
+                  >
                     Get Started Now
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -266,11 +280,12 @@ function App() {
             ].map((step, index) => (
               <div
                 key={step.step}
-                className="relative bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-fade-in-up"
+                className="relative bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-fade-in-up group cursor-pointer overflow-hidden"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
-                <div className="text-6xl font-bold text-blue-100 mb-4">{step.step}</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">{step.title}</h3>
+                <div className="absolute top-0 right-0 w-20 h-20 bg-blue-50 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="text-6xl font-bold text-blue-100 mb-4 group-hover:text-blue-200 transition-colors duration-300">{step.step}</div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">{step.title}</h3>
                 <p className="text-gray-600">{step.description}</p>
               </div>
             ))}
@@ -278,23 +293,24 @@ function App() {
         </div>
       </section>
 
-      <section id="contact" className="py-24 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Start Your US Business?
-          </h2>
-          <p className="text-xl text-blue-100 mb-12">
-            Join thousands of entrepreneurs who trust OGS Solution for their LLC formation
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2">
-              <span>Start Your LLC Today</span>
-              <ArrowRight className="h-5 w-5" />
-            </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 hover:scale-105">
-              Schedule Consultation
-            </button>
+      <TrustBadges />
+
+      <Testimonials />
+
+      <FAQ />
+
+      <section id="contact" className="py-24 bg-gradient-to-br from-blue-600 to-blue-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center text-white mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Ready to Start Your US Business?
+            </h2>
+            <p className="text-xl text-blue-100">
+              Fill out the form below and our team will contact you within 24 hours
+            </p>
           </div>
+
+          <ContactForm />
         </div>
       </section>
 
@@ -311,27 +327,27 @@ function App() {
             <div>
               <h4 className="text-white font-semibold mb-4">Services</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">LLC Formation</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">EIN Application</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Registered Agent</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Bank Account</a></li>
+                <li><a href="#" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">LLC Formation</a></li>
+                <li><a href="#" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">EIN Application</a></li>
+                <li><a href="#" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Registered Agent</a></li>
+                <li><a href="#" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Bank Account</a></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+                <li><a href="#" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">About Us</a></li>
+                <li><a href="#" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">FAQ</a></li>
+                <li><a href="#" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Blog</a></li>
+                <li><a href="#contact" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Contact</a></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-semibold mb-4">Legal</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Refund Policy</a></li>
+                <li><a href="#" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Terms of Service</a></li>
+                <li><a href="#" className="hover:text-white hover:translate-x-1 transition-all duration-300 inline-block">Refund Policy</a></li>
               </ul>
             </div>
           </div>
